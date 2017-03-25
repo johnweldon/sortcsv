@@ -5,8 +5,7 @@
 #
 command -v sortcsv >/dev/null 2>&1
 if [ "$?" -ne "0" ]; then
-  go get -v -u github.com/johnweldon/sortcsv
-  go build -i github.com/johnweldon/sortcsv
+  go get github.com/johnweldon/sortcsv
 fi
 
 #
