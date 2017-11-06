@@ -10,7 +10,7 @@ The [example](example_sort_script.sh) script shows how to use it to sort the Lin
 
 Requires Go 1.8+ because it uses the new [`sort.Slice`](https://golang.org/pkg/sort/#Slice) feature.
 
-`go get github.com/johnweldon/sortcsv`
+`go get jw4.us/sortcsv`
 
 ## Usage
 
