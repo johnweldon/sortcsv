@@ -13,6 +13,7 @@ import (
 var (
 	infile  = "-"
 	outfile = "-"
+	tabs    bool
 )
 
 func main() {
@@ -41,6 +42,7 @@ func sortCmd() *cli.Command {
 			&cli.StringFlag{Name: "infile", Aliases: []string{"in", "i"}, Usage: "Defaults to stdin (-) if not specified.", Destination: &infile, DefaultText: infile},
 			&cli.StringFlag{Name: "outfile", Aliases: []string{"out", "o"}, Usage: "Defaults to stdout (-) if not specified.", Destination: &outfile, DefaultText: outfile},
 			&cli.StringSliceFlag{Name: "sortby", Aliases: []string{"s"}, Usage: "Columns to sort by, repeat for sub-sort"},
+			&cli.BoolFlag{Name: "tab", Aliases: []string{"t"}, Usage: "Input is Tab-Delimited", Destination: &tabs},
 		},
 	}
 }
@@ -58,17 +60,10 @@ func sortcsv(ctx *cli.Context) error {
 		defer in.Close()
 	}
 
-	out := os.Stdout
-	switch outfile {
-	case "", "-":
-	default:
-		if out, err = os.Create(outfile); err != nil {
-			return err
-		}
-		defer out.Close()
-	}
-
 	reader := csv.NewReader(in)
+	if tabs {
+		reader.Comma = '\t'
+	}
 	records, err := reader.ReadAll()
 	if err != nil {
 		return err
@@ -88,7 +83,20 @@ func sortcsv(ctx *cli.Context) error {
 
 	sort.Slice(records[1:], sortRecords)
 
+	out := os.Stdout
+	switch outfile {
+	case "", "-":
+	default:
+		if out, err = os.Create(outfile); err != nil {
+			return err
+		}
+		defer out.Close()
+	}
+
 	writer := csv.NewWriter(out)
+	if tabs {
+		writer.Comma = '\t'
+	}
 	return writer.WriteAll(records)
 }
 
