@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#
+# If sortcsv is not in your path, use Go (1.8+) to download and install it
+#
+command -v sortcsv >/dev/null 2>&1
+if [ "$?" -ne "0" ]; then
+  go get jw4.us/sortcsv
+fi
+
+#
+# Bail immediately on error
+#
+set -e
+
+CONTACTS="contacts"
+echo -e "\nSort by Last, First, Email\n--"
+sortcsv sort -i "${CONTACTS}.csv" -s "Last" -s "First" -s "Email"
+
+CONTACTS="contacts"
+echo -e "\n\nSort by First, Last, Email\n--"
+sortcsv sort -i "${CONTACTS}.csv" -s "First" -s "Last" -s "Email"
+

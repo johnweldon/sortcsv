@@ -4,7 +4,30 @@ Tool to sort csv files by named columns.
 
 ## Example
 
-The [example](example_sort_script.sh) script shows how to use it to sort the LinkedIn Basic data archive Contacts.csv and Conections.csv
+The [example](example_sort) script shows how to use it to sort with multiple sub-sort columns.
+
+```shell
+$ ./example_sort
+
+Sort by Last, First, Email
+--
+First,Last,Email
+Mary,Bunce,mb@example.com
+John,Doe,doej@example.com
+Mary,O'Henry,mary@example.com
+Mary,O'Henry,moh@example.com
+Adam,Van der Oos,voos@example.com
+
+
+Sort by First, Last, Email
+--
+First,Last,Email
+Adam,Van der Oos,voos@example.com
+John,Doe,doej@example.com
+Mary,Bunce,mb@example.com
+Mary,O'Henry,mary@example.com
+Mary,O'Henry,moh@example.com
+```
 
 ## Installation
 
