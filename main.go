@@ -18,9 +18,10 @@ var (
 
 func main() {
 	app := cli.App{
-		Name:     "sortcsv",
-		Usage:    "Sort CSV file",
-		Commands: buildCommands(),
+		Name:        "sortcsv",
+		Usage:       "Sort CSV file",
+		Commands:    buildCommands(),
+		HideVersion: true,
 	}
 	if err := app.Run(os.Args); err != nil {
 		fmt.Fprintf(os.Stderr, "error running app: %v\n", err)
@@ -42,7 +43,7 @@ func sortCmd() *cli.Command {
 			&cli.StringFlag{Name: "infile", Aliases: []string{"in", "i"}, Usage: "Defaults to stdin (-) if not specified.", Destination: &infile, DefaultText: infile},
 			&cli.StringFlag{Name: "outfile", Aliases: []string{"out", "o"}, Usage: "Defaults to stdout (-) if not specified.", Destination: &outfile, DefaultText: outfile},
 			&cli.StringSliceFlag{Name: "sortby", Aliases: []string{"s"}, Usage: "Columns to sort by, repeat for sub-sort"},
-			&cli.BoolFlag{Name: "tab", Aliases: []string{"t"}, Usage: "Input is Tab-Delimited", Destination: &tabs},
+			&cli.BoolFlag{Name: "tab", Aliases: []string{"t"}, Usage: "Input is tab delimited, rather than comma delimited", Destination: &tabs},
 		},
 	}
 }

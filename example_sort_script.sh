@@ -18,9 +18,9 @@ set -e
 #
 
 CONTACTS="Contacts"
-sortcsv sort -i ${CONTACTS}.csv -s "Last Name" -s "First Name" -s "Email" -s "Phone Numbers" -s "Company" -s "Tags" -o _${CONTACTS}.csv
-mv _${CONTACTS}.csv ${CONTACTS}.csv
+sortcsv sort -i "${CONTACTS}.csv" -s "Last Name" -s "First Name" -s "Email" -s "Phone Numbers" -s "Company" -s "Tags" -o "_${CONTACTS}.csv" && \
+  mv "_${CONTACTS}.csv" "${CONTACTS}.csv"
 
 CONNECTIONS="Connections"
-sortcsv sort -i ${CONNECTIONS}.csv -s "LastName" -s "FirstName" -s "EmailAddress" -s "Company" -s "Tags" -o _${CONNECTIONS}.csv
-mv _${CONNECTIONS}.csv ${CONNECTIONS}.csv
+sortcsv sort -i "${CONNECTIONS}.csv" -s "LastName" -s "FirstName" -s "EmailAddress" -s "Company" -s "Tags" -o "_${CONNECTIONS}.csv" && \
+  mv "_${CONNECTIONS}.csv" "${CONNECTIONS}.csv"
