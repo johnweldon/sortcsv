@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strings"
 
-	"gopkg.in/urfave/cli.v2"
+	"github.com/urfave/cli/v2"
 )
 
 var (
@@ -62,6 +62,7 @@ func sortcsv(ctx *cli.Context) error {
 	}
 
 	reader := csv.NewReader(in)
+	reader.LazyQuotes = true
 	if tabs {
 		reader.Comma = '\t'
 	}

@@ -2,6 +2,10 @@
 
 Tool to sort csv files by named columns.
 
+## NB 
+
+Deprecated
+
 ## Example
 
 The [example](example_sort) script shows how to use it to sort with multiple sub-sort columns.
